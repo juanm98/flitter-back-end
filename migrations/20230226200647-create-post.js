@@ -25,7 +25,7 @@ module.exports = {
         key: 'id'
       }
     },
-      voterId: {
+      posterId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',

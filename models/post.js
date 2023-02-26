@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    voterId: {
+    posterId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
