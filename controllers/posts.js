@@ -65,8 +65,17 @@ async function updatePost(req, res) {
   }
 }
 
+async function getPosts(req, res) {
+  try {
+    
+  } catch (err) {
+    
+  }
+}
+
 module.exports = {
   getPost,
   createPost,
-  updatePost
+  updatePost,
+  getPosts
 }
