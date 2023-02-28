@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Post.belongsTo(models.User, {foreignKey: 'userId', as: 'user'})
+      Post.belongsTo(models.User, { foreignKey: 'userId', as: 'user' })
     }
   }
   Post.init({
@@ -22,27 +22,21 @@ module.exports = (sequelize, DataTypes) => {
     text: {
       type: DataTypes.STRING
     },
-    profileId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Profiles',
-        key: 'id'
-      }
+    desc: {
+      type: DataTypes.TEXT,
     },
-    posterId: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
       references: {
-        model: 'Profiles',
-        key: 'id'
-      }
+        model: 'Users',
+        key: 'id',
+      },
     },
   }, {
     sequelize,
     modelName: 'Post',
-  });
-  return Post;
-};
+  })
+  return Post
+}
