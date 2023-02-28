@@ -88,9 +88,14 @@ async function getPosts(req, res) {
   }
 }
 
+async function deletePost(req, res) {
+
+}
+
 module.exports = {
   getPost,
   createPost,
   updatePost,
-  getPosts
+  getPosts,
+  deletePost
 }
