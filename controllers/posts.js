@@ -67,9 +67,24 @@ async function updatePost(req, res) {
 
 async function getPosts(req, res) {
   try {
-    
+      const { offset = 0, limit = 20 } = req.query;
+      const { count, rows } = await Post.findAndCountAll({
+          where: {},
+          attributes: ['id', 'title', 'photo', 'desc'],
+          include: {
+              model: User,
+              as: 'user',
+              attributes: ['name', 'id', 'email'],
+              include: { model: Profile, as: 'profile', attributes: ['photo'] },
+          },
+          order: [['createdAt', 'DESC']],
+          offset,
+          limit,
+      });
+      return res.status(200).json({ totalPosts: count, posts: rows });
   } catch (err) {
-    
+      console.log(err);
+      return res.status(500).json({ err });
   }
 }
 
