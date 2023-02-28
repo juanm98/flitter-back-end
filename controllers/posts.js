@@ -1,5 +1,6 @@
 const { Post, Profile, User } = require('../models')
 const profile = require('../models/profile')
+const saveImage = require('../config/saveImage')
 
 async function createPost(req, res) {
   try {
