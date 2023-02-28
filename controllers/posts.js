@@ -1,7 +1,15 @@
-const { Post, Profile } = require('../models')
+const { Post, Profile, User } = require('../models')
 const profile = require('../models/profile')
 
-async function show(req, res) {
+async function createPost(req, res) {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
+
+async function getPost(req, res) {
   const id = req.params.id
   try {
     const post = await Post.findByPk(id, {
@@ -24,5 +32,6 @@ async function show(req, res) {
 }
 
 module.exports = {
-  show
+  getPost,
+  createPost
 }
