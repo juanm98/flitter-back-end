@@ -4,9 +4,14 @@ const saveImage = require('../config/saveImage')
 
 async function createPost(req, res) {
   try {
-    
-  } catch (error) {
-    
+    const imageFile = req.files.photo.path
+    const {title, desc} = req.body
+    const image = await saveImage(imageFile, title)
+    const post = await Post.create({ title, desc, userId: req.user.id, photo: image})
+    return res.status(201).json(post)
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json({ err })
   }
 }
 
