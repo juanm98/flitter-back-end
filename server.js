@@ -6,7 +6,8 @@ const formData = require('express-form-data')
 
 const profilesRouter = require('./routes/profiles.js')
 const authRouter = require('./routes/auth.js')
-const postsRouter = require('./routes/posts.js')
+const postRouter = require('./routes/posts.js')
+const commentRouter = require('./routes/comments.js')
 const app = express()
 
 app.use(cors())
@@ -16,7 +17,8 @@ app.use(formData.parse())
 
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
-app.use('/api/posts', postsRouter)
+app.use('/api/posts', postRouter)
+app.use('/api/comments', commentRouter)
 
 app.use(function (req, res, next) {
   res.status(404).json({ err: 'Not found' })
