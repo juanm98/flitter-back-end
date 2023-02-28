@@ -1,5 +1,6 @@
 const { Post, Profile } = require('../models')
 const profile = require('../models/profile')
+const cloudinary = require('cloudinary').v2
 
 async function show(req, res) {
   const id = req.params.id
@@ -24,6 +25,5 @@ async function show(req, res) {
 }
 
 module.exports = {
-  show,
-  create
+  show
 }
