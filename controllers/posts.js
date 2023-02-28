@@ -51,6 +51,14 @@ async function updatePost(req, res) {
       const imageFile = req.files.photo.path
       image = await saveImage(imageFile, title)
     }
+
+    post.title = title
+    post.desc = desc
+    post.photo = image
+    const updatePost = await post.save()
+    return res.status(200).json({
+      post: updatePost
+    })
   } catch (err) {
     console.log(err)
     res.status(500).json({ err })
