@@ -38,7 +38,23 @@ async function getPost(req, res) {
 }
 
 async function updatePost(req, res) {
-  
+  try {
+    const { id, title, desc, isImageUpdated } = req.body
+    let image = req.body.image
+    const post = await Post.findByPk(parseInt(id), {
+      include: { model: User, as: 'user', attributes: ['id'] },
+    })
+    if (req.user.id !== post.user.dataValues.id) {
+      return res.status(403).json({ message: 'You cannot edit this post ' })
+    }
+    if (isImageUpdated) {
+      const imageFile = req.files.photo.path
+      image = await saveImage(imageFile, title)
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ err })
+  }
 }
 
 module.exports = {
