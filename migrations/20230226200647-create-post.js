@@ -11,29 +11,23 @@ module.exports = {
       },
       title: {
         type: Sequelize.STRING,
-        required: true
+        allowNull: false,
       },
-      text: {
-        type: Sequelize.STRING
+      photo: {
+        type: Sequelize.STRING,
       },
-      profileId: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
-        model: 'Profiles',
-        key: 'id'
-      }
-    },
-      posterId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        onDelete: 'CASCADE',
-        references: {
-        model: 'Profiles',
-        key: 'id'
-      }
-    },
+          model: 'Users',
+          key: 'id',
+        },
+      },
+      desc: {
+        type: Sequelize.TEXT,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
