@@ -37,7 +37,12 @@ async function getPost(req, res) {
   }
 }
 
+async function updatePost(req, res) {
+  
+}
+
 module.exports = {
   getPost,
-  createPost
+  createPost,
+  updatePost
 }

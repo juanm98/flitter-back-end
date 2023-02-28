@@ -10,5 +10,6 @@ router.get('/:id', postsCtrl.getPost)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, postsCtrl.createPost)
+router.put('/', checkAuth, postsCtrl.updatePost)
 
 module.exports = router
