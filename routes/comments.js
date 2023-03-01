@@ -5,6 +5,7 @@ const middleware = require('../middleware/auth.js')
 const { decodeUserFromToken, checkAuth } = middleware
 
 router.post('/', checkAuth, commentsCtrl.createComment)
-router.get('/', commentsCtrl.getComments)
+router.get('/', commentsCtrl.getComment)
+router.delete('/', checkAuth, commentsCtrl.deleteComment)
 
 module.exports = router

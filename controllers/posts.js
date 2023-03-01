@@ -89,7 +89,27 @@ async function getPosts(req, res) {
 }
 
 async function deletePost(req, res) {
+  try {
+      const id = req.params.id;
 
+      const post = await Post.findByPk(id, {
+          include: { model: User, as: 'user', attributes: ['id'] },
+      });
+      if (req.user.id !== post.user.dataValues.id) {
+          return res.status(403).json({ message: 'You cannot delete this post ' });
+      }
+
+      await Post.destroy({
+          where: {
+              id,
+          },
+      });
+      return res.status(200).json({
+          message: 'Post deleted',
+      });
+  } catch (err) {
+      return res.status(500).json({ err });
+  }
 }
 
 module.exports = {

@@ -15,7 +15,7 @@ async function createComment(req, res) {
   }
 }
 
-async function getComments(req, res) {
+async function getComment(req, res) {
   const postId = req.body.postId;
   if (!postId) return res.status(400).json({ message: 'Please provide post id' })
   try {
@@ -41,7 +41,33 @@ async function getComments(req, res) {
   }
 }
 
+async function deleteComment(req, res) {
+  try {
+      const id = req.params.id
+
+      if (!id) return res.status(400).json({ message: 'Provide comment id' })
+      console.log(id);
+      const comment = await Comment.findByPk(id, {
+          include: { model: User, as: 'user', attributes: ['id'] },
+      });
+      if (!comment) return res.status(404).json({ message: 'No comment found' })
+      if (req.user.id !== comment.user.dataValues.id) {
+          return res.status(403).json({ message: 'You cannot delete this comment' })
+      }
+
+      await Comment.destroy({
+          where: {
+              id,
+          },
+      })
+      return res.status(200).json({ message: 'comment deleted' })
+  } catch (err) {
+      return res.status(500).json({ err })
+  }
+}
+
 module.exports = {
   createComment,
-  getComments
+  getComment,
+  deleteComment
 }
