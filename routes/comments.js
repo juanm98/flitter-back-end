@@ -4,8 +4,11 @@ const middleware = require('../middleware/auth.js')
 
 const { decodeUserFromToken, checkAuth } = middleware
 
-router.post('/', checkAuth, commentsCtrl.createComment)
+/*---------- Public Routes ----------*/
 router.get('/', commentsCtrl.getComment)
+
+/*---------- Protected Routes ----------*/
+router.post('/', checkAuth, commentsCtrl.createComment)
 router.delete('/', checkAuth, commentsCtrl.deleteComment)
 
 module.exports = router
