@@ -40,7 +40,7 @@ async function deleteComment(req, res) {
 }
 
 async function getComments(req, res) {
-    const postId = req.body.postId
+    const postId = req.query.postId
     if (!postId) return res.status(400).json({ message: 'Please provide post id' })
     try {
         const { count, rows } = await Comment.findAndCountAll({
