@@ -6,8 +6,8 @@ const formData = require('express-form-data')
 
 const profilesRouter = require('./routes/profiles.js')
 const authRouter = require('./routes/auth.js')
-const postRouter = require('./routes/posts.js')
-const commentRouter = require('./routes/comments.js')
+const postRouter = require('./routes/post.js')
+const commentRouter = require('./routes/comment.js')
 const app = express()
 
 app.use(cors())
